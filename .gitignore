@@ -1,8 +1,9 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 # dependencies
-/Backend/node_modules
-/frontend/node_modules
+/student-management-system-node-back-end/node_modules
+/student-management-system-front-end/node_modules
+node_modules
 /.pnp
 .pnp.js
 
@@ -24,7 +25,7 @@ yarn-debug.log*
 yarn-error.log*
 
 .env
-frontend/.env
-Backend/.env
+student-management-system-front-end/.env
+student-management-system-node-back-end/.env
 
 
