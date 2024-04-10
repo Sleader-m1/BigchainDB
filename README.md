@@ -7,7 +7,8 @@
     ```
     cd Backend
     npm install
-    node index.js
+    edit env.example
+    npm start
     ```
     ```
     cd frontend
