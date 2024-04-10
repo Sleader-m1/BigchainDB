@@ -28,4 +28,5 @@ yarn-error.log*
 student-management-system-front-end/.env
 student-management-system-node-back-end/.env
 
-
+.husky
+.vscode

@@ -1,4 +1,3 @@
-<h1 align="center"> Welcome to the Student Database IIT Bhilai project 👋</h1>
 
 ### Setup instructions
 
@@ -16,7 +15,3 @@
     npm start
     ```
 ## 🧑‍💻 Maintainers
-
-- [Anjali Patil](https://github.com/AnjaliPatil4)
-- [Rohit Ashwani](https://github.com/rohitashwani1)
-- [Aayush Krishnan](https://github.com/krishnan05)
