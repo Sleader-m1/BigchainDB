@@ -30,25 +30,43 @@ const studentModel = (sequelize, DataType) => {
                 }
             }
         },
-        address: {
+        email: {
             type: DataType.STRING(150),
             allowNull: false,
-            field: "address",
+            field: "email",
             validate: {
                 notEmpty: {
                     args: true,
-                    msg: "Address cannot be empty"
+                    msg: "Email cannot be empty"
                 },
                 notNull: {
                     args: true,
-                    msg: "Address cannot be null"
+                    msg: "Email cannot be null"
                 },
                 is: {
-                    args: /[A-Za-z\d][A-Za-z\d-|/# ,.:;\\]+$/,
-                    msg: "Invalid student address"
+                    args: /^[A-Z0-9._%+-]+@[A-Z0-9-]+.+.[A-Z]{2,4}$/i,
+                    msg: "Invalid student email"
                 }
             }
         },
+
+        pub_key: {
+            type: DataType.STRING(500),
+            allowNull: false,
+            field: "pub_key",
+            validate: {
+                notEmpty: {
+                    args: true,
+                    msg: "Email cannot be empty"
+                },
+                notNull: {
+                    args: true,
+                    msg: "Email cannot be null"
+                },
+            }
+        },
+
+
         contact: {
             type: DataType.STRING(11),
             allowNull: false,
