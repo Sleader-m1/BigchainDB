@@ -19,13 +19,13 @@ function DeleteStudent() {
         setErrMessage("");
         setResponseMessage("");
         if (!/^\d{9}[Vv]$/.test(nic)) {
-            setErrMessage("Student nic number is empty or invalid");
+            setErrMessage("ID студента не найден или не введен");
             document.getElementById("nic").focus();
             return;
         }
         try {
             await DeleteCall(nic);
-            setResponseMessage("Student successfully delete from the database");
+            setResponseMessage("Студент успешно удален из базы данных");
         }
         catch (err) {
             if (err.response) {
@@ -43,14 +43,14 @@ function DeleteStudent() {
         <div className={"centered-element"}>
             <img className="student-img" src={"https://cdn-icons-png.flaticon.com/512/5349/5349022.png"} width={"120px"} alt={"user-logo"}/>
             <div className="student-container">
-                <h1>Delete Student</h1>
+                <h1>Удалить студента</h1>
                 <br/>
                 <form onSubmit={handleSubmit}>
-                    <input onChange={handleChange} value={nic} id="nic" name="nic" placeholder="Enter NIC Number"/>
+                    <input onChange={handleChange} value={nic} id="nic" name="nic" placeholder="Введите ID студента"/>
                     <h5>{errMessage}&nbsp;</h5>
                     <br/>
-                    <button type={"submit"}>Delete Student</button>
-                    <Link className={"back-link"} to='/dashboard'>Back</Link>
+                    <button type={"submit"}>Удалить студента</button>
+                    <Link className={"back-link"} to='/dashboard'>Назад</Link>
                 </form>
                 <h4>{responseMessage}</h4>
             </div>

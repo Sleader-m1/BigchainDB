@@ -22,13 +22,13 @@ function GetStudent() {
         setErrMessage("");
         setResponseMessage("");
         if (!/^\d{9}[Vv]$/.test(nic)) {
-            setErrMessage("Student nic number is empty or invalid");
+            setErrMessage("ID студента не найден или не введен");
             document.getElementById("nic").focus();
             return;
         }
         try {
             const response = await GetCall(nic);
-            setResponseMessage("Student successfully get from the database");
+            setResponseMessage("Данные студента успешно получены");
             setOutput({
                 nic: response.data.nic,
                 name: response.data.name,
@@ -52,14 +52,14 @@ function GetStudent() {
         <div className={"centered-element"}>
             <img className="student-img" src={"https://cdn-icons-png.flaticon.com/512/5349/5349022.png"} width={"100px"} alt={"student-logo"}/>
             <div className="student-container">
-                <h1>Get Student Details</h1>
+                <h1>Получить данные студента</h1>
                 <br/>
                 <form onSubmit={handleSubmit}>
-                    <input onChange={handleChange} value={nic} id="nic" name="nic" placeholder="Enter NIC Number"/>
+                    <input onChange={handleChange} value={nic} id="nic" name="nic" placeholder="Введите ID студента"/>
                     <h5>{errMessage}&nbsp;</h5>
                     <br/>
-                    <button type={"submit"}>Get Student Details</button>
-                    <Link className={"back-link"} to='/dashboard'>Back</Link>
+                    <button type={"submit"}>Получить данные студента</button>
+                    <Link className={"back-link"} to='/dashboard'>Назад</Link>
                 </form>
                 <OutputContainer
                     nic={output.nic}

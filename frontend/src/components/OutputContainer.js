@@ -1,10 +1,10 @@
 function OutputContainer(props) {
     return (
         <div>
-            <h3>NIC Number : {props.nic}</h3>
-            <h3>Student Name : {props.name}</h3>
-            <h3>Student Address : {props.address}</h3>
-            <h3>Student Contact : {props.contact}</h3>
+            <h3>ID студента : {props.nic}</h3>
+            <h3>Имя студента : {props.name}</h3>
+            <h3>Почта студента : {props.address}</h3>
+            <h3>Телефон студента : {props.contact}</h3>
         </div>
     );
 }

@@ -25,19 +25,19 @@ function SubmitStudent() {
         setErrMessage("");
         setResponseMessage("");
         if (!/^\d{9}[Vv]$/.test(student.nic)) {
-            setErrMessage("Student nic number is empty or invalid");
+            setErrMessage("ID студента не введено или не найдено");
             document.getElementById("nic").focus();
             return;
         } else if (!/^[A-Za-z][A-Za-z ]+$/.test(student.name)) {
-            setErrMessage("Student name is empty or invalid");
+            setErrMessage("Имя студента не введено или не найдено");
             document.getElementById("name").focus();
             return;
         } else if (!/^[A-Za-z\d][A-Za-z\d-|/# ,.:;\\]+$/.test(student.address)) {
-            setErrMessage("Student address is empty or invalid");
+            setErrMessage("Почта студента не введена или не найдена");
             document.getElementById("address").focus();
             return;
         } else if (!/^\d{3}-\d{7}$/.test(student.contact)) {
-            setErrMessage("Student contact is empty or invalid");
+            setErrMessage("Номер телефона студента не введен или не найден");
             document.getElementById("contact").focus();
             return;
         }
@@ -55,7 +55,7 @@ function SubmitStudent() {
         }
         try {
             const response = await PostCall(output);
-            setResponseMessage("Student successfully submitted to the database");
+            setResponseMessage("Студент добавлен в базу данных");
         }
         catch (err) {
             if (err.response) {
@@ -73,18 +73,18 @@ function SubmitStudent() {
         <div className={"centered-element"}>
             <img className="student-img" src={"https://cdn-icons-png.flaticon.com/512/5349/5349022.png"} width={"120px"} alt={"user-logo"}/>
             <div className="student-container">
-                <h1>Submit Student</h1>
+                <h1>Добавить студента</h1>
                 <br/>
                 <form onSubmit={handleSubmit}>
-                    <input onChange={handleChange} value={student.nic} id="nic" name="nic" placeholder="Enter NIC Number" />
-                    <input onChange={handleChange} value={student.name} id="name" name="name" placeholder="Enter Name" />
-                    <input onChange={handleChange} value={student.address} id="address" name="address" placeholder="Enter Address" />
-                    <input onChange={handleChange} value={student.contact} id="contact" name="contact" placeholder="Enter Contact" />
+                    <input onChange={handleChange} value={student.nic} id="nic" name="nic" placeholder="Введине ID студента" />
+                    <input onChange={handleChange} value={student.name} id="name" name="name" placeholder="Введите имя студента" />
+                    <input onChange={handleChange} value={student.address} id="address" name="address" placeholder="Введите Почта студента" />
+                    <input onChange={handleChange} value={student.contact} id="contact" name="contact" placeholder="Введите номер телефона студента" />
                     <h5>{errMessage}&nbsp;</h5>
                     <br/>
-                    <button onClick={handleCheckOut} type={"button"}>Check Out</button>
-                    <button type={"submit"}>Submit Student</button>
-                    <Link className={"back-link"} to='/dashboard'>Back</Link>
+                    <button onClick={handleCheckOut} type={"button"}>Проверить данные</button>
+                    <button type={"submit"}>Добавить студента</button>
+                    <Link className={"back-link"} to='/dashboard'>Вернуться</Link>
                 </form>
                 <br/>
                 <OutputContainer

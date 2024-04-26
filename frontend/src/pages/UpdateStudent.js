@@ -25,19 +25,19 @@ function UpdateStudent() {
         setResponseMessage("");
         setErrMessage("");
         if (!/^\d{9}[Vv]$/.test(student.nic)) {
-            setErrMessage("Student nic number is empty or invalid");
+            setErrMessage("ID студента не найден или не введен");
             document.getElementById("nic").focus();
             return;
         } else if (!/^[A-Za-z][A-Za-z ]+$/.test(student.name)) {
-            setErrMessage("Student name is empty or invalid");
+            setErrMessage("Имя студента не найдено или не введено");
             document.getElementById("name").focus();
             return;
         } else if (!/^[A-Za-z\d][A-Za-z\d-|/# ,.:;\\]+$/.test(student.address)) {
-            setErrMessage("Student address is empty or invalid");
+            setErrMessage("Почта студента не найден или не введен");
             document.getElementById("address").focus();
             return;
         } else if (!/^\d{3}-\d{7}$/.test(student.contact)) {
-            setErrMessage("Student contact is empty or invalid");
+            setErrMessage("Телефон студента не найден или не введен");
             document.getElementById("contact").focus();
             return;
         }
@@ -50,12 +50,12 @@ function UpdateStudent() {
         setErrMessage("");
         setResponseMessage("");
         if (!output.nic || !output.name || !output.address || !output.contact) {
-            setErrMessage("Inputs didn't checked out");
+            setErrMessage("Значение не проверены");
             return;
         }
         try {
             const response = await PatchCall(output.nic, output);
-            setResponseMessage("Student successfully updated in the database");
+            setResponseMessage("Студент добавлен в базу данных");
         }
         catch (err) {
             if (err.response) {
@@ -73,18 +73,18 @@ function UpdateStudent() {
         <div className={"centered-element"}>
             <img className="student-img" src={"https://cdn-icons-png.flaticon.com/512/5349/5349022.png"} width={"120px"} alt={"user-logo"}/>
             <div className="student-container">
-                <h1>Update Student Details</h1>
+                <h1>Обновить данные студента</h1>
                 <br/>
                 <form onSubmit={handleSubmit}>
-                    <input onChange={handleChange} value={student.nic} id="nic" name="nic" placeholder="Enter NIC Number" />
-                    <input onChange={handleChange} value={student.name} id="name" name="name" placeholder="Enter Name" />
-                    <input onChange={handleChange} value={student.address} id="address" name="address" placeholder="Enter Address" />
-                    <input onChange={handleChange} value={student.contact} id="contact" name="contact" placeholder="Enter Contact" />
+                    <input onChange={handleChange} value={student.nic} id="nic" name="nic" placeholder="Введите ID" />
+                    <input onChange={handleChange} value={student.name} id="name" name="name" placeholder="Введите имя" />
+                    <input onChange={handleChange} value={student.address} id="address" name="address" placeholder="Введите Почта" />
+                    <input onChange={handleChange} value={student.contact} id="contact" name="contact" placeholder="Введите телефон" />
                     <h5>{errMessage}&nbsp;</h5>
                     <br/>
-                    <button onClick={handleCheckOut} type={"button"}>Check Out</button>
-                    <button type={"submit"}>Update Student Details</button>
-                    <Link className={"back-link"} to='/dashboard'>Back</Link>
+                    <button onClick={handleCheckOut} type={"button"}>Проверить данные</button>
+                    <button type={"submit"}>Обновить данные студента</button>
+                    <Link className={"back-link"} to='/dashboard'>Вернуться</Link>
                 </form>
                 <br/>
                 <OutputContainer

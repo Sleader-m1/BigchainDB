@@ -19,11 +19,11 @@ function Login() {
     function handleLogin(event) {
         event.preventDefault();
         if (admin.username !== "admin") {
-            setErrMessage("Username is not correct");
+            setErrMessage("Логин не найден");
             document.getElementById("username").focus();
             return;
         } else if (admin.password !== "admin123") {
-            setErrMessage("Password is not correct");
+            setErrMessage("Неверный пароль");
             document.getElementById("password").focus();
             return;
         }
@@ -34,12 +34,12 @@ function Login() {
         <div className={"centered-element"}>
             <img className={"login-img"} src={"./images/login-logo.png"} width={"120px"} alt={"login-logo"}/>
             <div className={"login-container"}>
-                <h1>Admin Login</h1>
+                <h1>Авторизация</h1>
                 <br/>
                 <form onSubmit={handleLogin} className={"login-form"}>
-                    <input onChange={handleChange} id={"username"} type={"text"} name={"username"} placeholder={"Username"} value={admin.username}/>
-                    <input onChange={handleChange} id={"password"} type={"password"} name={"password"} placeholder={"Password"} value={admin.password}/>
-                    <button type={"submit"}>Login</button>
+                    <input onChange={handleChange} id={"username"} type={"text"} name={"username"} placeholder={"Логин"} value={admin.username}/>
+                    <input onChange={handleChange} id={"password"} type={"password"} name={"password"} placeholder={"Пароль"} value={admin.password}/>
+                    <button type={"submit"}>Войти</button>
                 </form>
                 <h5>{errMessage}</h5>
             </div>
