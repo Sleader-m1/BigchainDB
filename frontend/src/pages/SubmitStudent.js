@@ -32,11 +32,11 @@ function SubmitStudent() {
             setErrMessage("Имя студента не введено или не найдено");
             document.getElementById("name").focus();
             return;
-        } else if (!/^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}$/i.test(student.address)) {
+        } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9-]+.+.[A-Z]{2,4}$/i.test(student.address)) {
             setErrMessage("Почта студента не введена или не найдена");
             document.getElementById("address").focus();
             return;
-        } else if (!/^(8|\+7)?\s?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{2}[\s.-]?\d{2}$/.test(student.contact)) {
+        } else if (!/^\d{3}-\d{7}$/.test(student.contact)) {
             setErrMessage("Номер телефона студента не введен или не найден");
             document.getElementById("contact").focus();
             return;
