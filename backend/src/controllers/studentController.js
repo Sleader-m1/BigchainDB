@@ -1,9 +1,10 @@
 const {db} = require("../models");
 const {StatusCodes} = require("http-status-codes");
 const {ConflictError, BadRequestError} = require("../errors/errors");
-
+const { generateEd25519KeyPair } = require ('./gen_key_pair');
 const Student = db.students;
 const sequelize = db.sequelize;
+
 
 const createNewStudent = async (req, res) => {
     const t = await sequelize.transaction();
@@ -62,4 +63,25 @@ const deleteStudent = async (req, res) => {
     }
 }
 
-module.exports = {createNewStudent,getStudentDetails,updateStudent,deleteStudent}
+function genKeyPairController(req, res) {
+        try {
+            const ed25519Keys = generateEd25519KeyPair();
+
+            res.status(200).json({
+                success: true,
+                message: 'Ed25519 key pair generated successfully.',
+                keys: {
+                    publicKey: ed25519Keys.publicKey,
+                    privateKey: ed25519Keys.privateKey
+                }
+            });
+        } catch (error) {
+            res.status(500).json({
+                success: false,
+                message: 'Error generating Ed25519 key pair.',
+                error: error.message
+            });
+        }
+}
+
+module.exports = {createNewStudent,getStudentDetails,updateStudent,deleteStudent, genKeyPairController}
