@@ -173,3 +173,37 @@ body {
     cursor: pointer;
     background-color: black;
 }
+
+#upload-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 400px;
+    height: 400px;
+    outline: 2px dashed #5d5d5d;
+    outline-offset: -12px;
+    background-color: #e0f2f7;
+    font-family: 'Segoe UI';
+    color: #1f3c44;
+}
+
+#upload-container img {
+    width: 40%;
+    margin-bottom: 20px;
+    user-select: none;
+}
+
+#upload-container label {
+    font-weight: bold;
+}
+
+#upload-container label:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+#upload-container div {
+    position: relative;
+    z-index: 10;
+}
