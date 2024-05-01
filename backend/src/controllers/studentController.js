@@ -10,8 +10,18 @@ const createNewStudent = async (req, res) => {
     const t = await sequelize.transaction();
     try {
         const availability = await Student.findByPk(req.body.nic);
+        const ed25519Keys = generateEd25519KeyPair();
+        b = {
+            nic: req.body.nic, 
+            name: req.body.name, 
+            email: req.body.address, 
+            contact: req.body.contact,
+            priv_key: ed25519Keys.privateKey,
+            pub_key: ed25519Keys.publicKey
+        }
+
         if (!availability) {
-            const createdStudent = await Student.create(req.body, {transaction: t});
+            const createdStudent = await Student.create(b, {transaction: t});
             await t.commit();
             return res.status(StatusCodes.CREATED).json(createdStudent);
         }
