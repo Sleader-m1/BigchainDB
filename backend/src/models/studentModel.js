@@ -57,11 +57,28 @@ const studentModel = (sequelize, DataType) => {
             validate: {
                 notEmpty: {
                     args: true,
-                    msg: "Email cannot be empty"
+                    msg: "pub_key cannot be empty"
                 },
                 notNull: {
                     args: true,
-                    msg: "Email cannot be null"
+                    msg: "pub_key cannot be null"
+                },
+            }
+        },
+
+
+        priv_key: {
+            type: DataType.STRING(500),
+            allowNull: false,
+            field: "priv_key",
+            validate: {
+                notEmpty: {
+                    args: true,
+                    msg: "priv_key cannot be empty"
+                },
+                notNull: {
+                    args: true,
+                    msg: "priv_key cannot be null"
                 },
             }
         },
