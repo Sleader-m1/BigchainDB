@@ -36,7 +36,7 @@ function SubmitStudent() {
             setErrMessage("Почта студента не введена или не найдена");
             document.getElementById("address").focus();
             return;
-        } else if (!/^\d{3}-\d{7}$/.test(student.contact)) {
+        } else if (!/^(8|\+7)?\s?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{2}[\s.-]?\d{2}$/.test(student.contact)) {
             setErrMessage("Номер телефона студента не введен или не найден");
             document.getElementById("contact").focus();
             return;
