@@ -50,7 +50,7 @@ function SubmitStudent() {
         setErrMessage("");
         setResponseMessage("");
         if (!output.nic || !output.name || !output.address || !output.contact) {
-            setErrMessage("Inputs didn't checked out");
+            setErrMessage("Значения не проверены");
             return;
         }
         try {
