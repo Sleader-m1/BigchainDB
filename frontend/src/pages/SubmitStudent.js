@@ -32,7 +32,7 @@ function SubmitStudent() {
             setErrMessage("Имя студента не введено или не найдено");
             document.getElementById("name").focus();
             return;
-        } else if (!/^[A-Za-z\d][A-Za-z\d-|/# ,.:;\\]+$/.test(student.address)) {
+        } else if (!/^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}$/i.test(student.address)) {
             setErrMessage("Почта студента не введена или не найдена");
             document.getElementById("address").focus();
             return;
