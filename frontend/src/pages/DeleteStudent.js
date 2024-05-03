@@ -18,7 +18,7 @@ function DeleteStudent() {
         event.preventDefault();
         setErrMessage("");
         setResponseMessage("");
-        if (!/^\d{9}[Vv]$/.test(nic)) {
+        if (!/^[a-zA-Z0-9]+$/.test(nic)) {
             setErrMessage("ID студента не найден или не введен");
             document.getElementById("nic").focus();
             return;

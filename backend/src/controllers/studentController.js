@@ -14,7 +14,7 @@ const createNewStudent = async (req, res) => {
         b = {
             nic: req.body.nic, 
             name: req.body.name, 
-            email: req.body.address, 
+            email: req.body.email, 
             contact: req.body.contact,
             priv_key: ed25519Keys.privateKey,
             pub_key: ed25519Keys.publicKey
