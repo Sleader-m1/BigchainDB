@@ -1,12 +1,12 @@
 const studentModel = (sequelize, DataType) => {
     return sequelize.define("student", {
         nic: {
-            type: DataType.STRING(10),
+            type: DataType.STRING(30),
             allowNull: false,
             primaryKey: true,
             validate: {
                 is: {
-                    args: /^\d{9}[Vv]$/,
+                    args: /^[a-zA-Z0-9]+$/,
                     msg: "Invalid student nic number"
                 }
             }
@@ -25,7 +25,7 @@ const studentModel = (sequelize, DataType) => {
                     msg: "Name cannot be null"
                 },
                 is: {
-                    args: /^[A-Za-z][A-Za-z ]+$/,
+                    args: /^[A-Za-zА-Яа-яЁё][A-Za-zА-Яа-яЁё ]+$/,
                     msg: "Invalid student name"
                 }
             }
@@ -85,7 +85,7 @@ const studentModel = (sequelize, DataType) => {
 
 
         contact: {
-            type: DataType.STRING(11),
+            type: DataType.STRING(13),
             allowNull: false,
             field: "contact",
             validate: {
@@ -98,7 +98,7 @@ const studentModel = (sequelize, DataType) => {
                     msg: "Contact cannot be null"
                 },
                 is: {
-                    args: /^\d{3}-\d{7}$/,
+                    args: /^\+?\d{1,2}\s?\(?\d{3}\)?[\s\-]?\d{3}[\s\-]?\d{2}[\s\-]?\d{2}$/,
                     msg: "Invalid student contact number"
                 }
             }
