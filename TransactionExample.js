@@ -4,7 +4,7 @@ const crypto = require('crypto');
 const { Ed25519Sha256 } = require('crypto-conditions');
 
 // BigchainDB server instance (e.g. https://example.com/api/v1/)
-const API_PATH = 'http://83.222.9.173:9984/api/v1/'
+const API_PATH = 'http://95.164.32.14:9984/'
 
 // Create a new keypair.
 const alice = new driver.Ed25519Keypair()

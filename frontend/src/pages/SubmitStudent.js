@@ -24,11 +24,11 @@ function SubmitStudent() {
     function handleCheckOut() {
         setErrMessage("");
         setResponseMessage("");
-        if (!/^\d{9}[Vv]$/.test(student.nic)) {
+        if (!/^[a-zA-Z0-9]+$/.test(student.nic)) {
             setErrMessage("ID студента не введено или не найдено");
             document.getElementById("nic").focus();
             return;
-        } else if (!/^[A-Za-z][A-Za-z ]+$/.test(student.name)) {
+        } else if (!/^[A-Za-zА-Яа-яЁё][A-Za-zА-Яа-яЁё ]+$/.test(student.name)) {
             setErrMessage("Имя студента не введено или не найдено");
             document.getElementById("name").focus();
             return;
@@ -36,7 +36,7 @@ function SubmitStudent() {
             setErrMessage("Почта студента не введена или не найдена");
             document.getElementById("address").focus();
             return;
-        } else if (!/^\d{3}-\d{7}$/.test(student.contact)) {
+        } else if (!/^\+?\d{1,2}\s?\(?\d{3}\)?[\s\-]?\d{3}[\s\-]?\d{2}[\s\-]?\d{2}$/.test(student.contact)) {
             setErrMessage("Номер телефона студента не введен или не найден");
             document.getElementById("contact").focus();
             return;

@@ -4,13 +4,13 @@ import OutputContainer from "../components/OutputContainer";
 import {GetCall} from "../api/ApiCalls";
 
 function GetStudent() {
-    const [output, setOutput] = useState({nic: "", name: "", address: "", contact: ""});
+    const [output, setOutput] = useState({nic: "", name: "", email: "", contact: ""});
     const [nic, setNic] = useState("");
     const [errMessage, setErrMessage] = useState("");
     const [responseMessage, setResponseMessage] = useState("");
 
     function handleChange(event) {
-        setOutput({nic: "", name: "", address: "", contact: ""});
+        setOutput({nic: "", name: "", email: "", contact: ""});
         setResponseMessage("");
         setErrMessage("");
         const newNic = event.target.value;
@@ -21,7 +21,7 @@ function GetStudent() {
         event.preventDefault();
         setErrMessage("");
         setResponseMessage("");
-        if (!/^\d{9}[Vv]$/.test(nic)) {
+        if (!/^[a-zA-Z0-9]+$/.test(nic)) {
             setErrMessage("ID студента не найден или не введен");
             document.getElementById("nic").focus();
             return;
@@ -32,7 +32,7 @@ function GetStudent() {
             setOutput({
                 nic: response.data.nic,
                 name: response.data.name,
-                address: response.data.address,
+                email: response.data.email,
                 contact: response.data.contact
             });
         }
@@ -64,7 +64,7 @@ function GetStudent() {
                 <OutputContainer
                     nic={output.nic}
                     name={output.name}
-                    address={output.address}
+                    address={output.email}
                     contact={output.contact}
                 />
                 <br/>
