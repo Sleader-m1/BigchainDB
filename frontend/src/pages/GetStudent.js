@@ -49,7 +49,7 @@ function GetStudent() {
         formData.append("privateKey", output.priv_key);
 
         try {
-            const response = await fetch('http://localhost:8080/app/api/students/upload_file', {
+            const response = await fetch('http://95.164.32.14:8080/app/api/students/upload_file', {
                 method: 'POST',
                 body: formData,
             });
@@ -63,10 +63,18 @@ function GetStudent() {
         setFile(event.target.files[0]);
     }
 
+    function handleFileChange1(event){
+        setFile(event.target.files[0]);
+        const element = document.getElementById('filename');
+        if (element) {
+          element.textContent = event.target.files[0].name;
+        }
+    };
+
     async function fetchTransactions() {
         setLoadingTransactions(true);
         try {
-            const response = await fetch(`http://localhost:8080/app/api/students/files?publicKey=${output.pub_key}`);
+            const response = await fetch(`http://95.164.32.14:8080/app/api/students/files?publicKey=${output.pub_key}`);
             const data = await response.json();
             setTransactions(data.transactions);
             setResponseMessage(data.message);
@@ -97,14 +105,20 @@ function GetStudent() {
                         />
                         <p>Загрузить файл в Bigchaindb</p>
                         <form onSubmit={handleFileUpload}>
-                            <input type="file" onChange={handleFileChange} />
+                            <label class="input-file">
+	                           	<span class="input-file-text" type="text" id="filename"></span>
+	                           	<input type="file" name="file" onChange={handleFileChange1} />        
+ 	                           	<span class="input-file-btn">Выберите файл</span>
+ 	                        </label>
+                            <br/>
                             <button type="submit">Загрузить файл</button>
                         </form>
                         <button onClick={fetchTransactions} disabled={loadingTransactions}>
                             Получить прошлые транзакции
                         </button>
+                        <center>
                         {transactions.length > 0 && (
-                            <table>
+                            <table className="transactions-table">
                                 <thead>
                                     <tr>
                                         <th>ID транзакции</th>
@@ -118,7 +132,7 @@ function GetStudent() {
                                             <td>{tx.id}</td>
                                             <td>{tx.metadata.name}</td>
                                             <td>
-                                                <a href={`http://localhost:8080/app/api/students/transaction?transactionid=${tx.id}`} download>
+                                                <a href={`http://95.164.32.14:8080/app/api/students/transaction?transactionid=${tx.id}`} download>
                                                     Скачать
                                                 </a>
                                             </td>
@@ -127,6 +141,7 @@ function GetStudent() {
                                 </tbody>
                             </table>
                         )}
+                        </center>
                     </>
                 )}
                 <h4>{responseMessage}</h4>
