@@ -274,10 +274,6 @@ button:hover {
     visibility: hidden;
 }
 
-.custom-file-input::selection{
-    content: 'hui';
-}
-
 .custom-file-input::before {
   content: 'Выбрать';
   display: inline-block;
@@ -291,7 +287,6 @@ button:hover {
     content: 'Загрузка...';
 }
 
-/* HUUUUUUUUUUUUUUUUUUUUUUUi */
 .input-file {
 	position: relative;
 	display: inline-block;
