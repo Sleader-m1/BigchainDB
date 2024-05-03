@@ -14,6 +14,11 @@ body {
     height: 100%;
 }
 
+p {
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+
 .centered-element {
     position: absolute;
     top: 10%;
@@ -144,6 +149,7 @@ body {
     background-color: rgba(252, 252, 252, 0.2);
     border: 1px solid rgba(252, 252, 252, 0.4);
     border-radius: 3px;
+    
 }
 
 .student-container button:hover, .student-container button:focus {
@@ -206,4 +212,59 @@ body {
 #upload-container div {
     position: relative;
     z-index: 10;
+    white-space: nowrap;   /* Предотвращает перенос текста на новую строку */
+    overflow: visible;     /* Позволяет тексту выходить за пределы элемента */
+
 }
+
+.table-container {
+    margin-top: 20px;
+    overflow-x: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #35927e;
+}
+
+table th,
+table td {
+    text-align: left;
+    padding: 12px 15px;
+}
+
+table thead {
+    background-color: #80db87;
+    color: #333;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+table tbody tr:nth-child(odd) {
+    background-color: #2d687a;
+}
+
+table tbody tr:hover {
+    background-color: #2d687a;
+}
+
+/* Стили для кнопок */
+button {
+    background-color: #4CAF50; /* Зеленый */
+    color: white;
+    padding: 10px 20px;
+    margin: 10px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+/* Общие стили текста и контейнеров */

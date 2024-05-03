@@ -88,9 +88,12 @@ async function getUploadedFiles(req, res) {
         // Фильтруем null значения, которые могли возникнуть из-за ошибок
         const validTransactions = transactions.filter(tx => tx !== null);
 
+        // Удаляем поле 'asset' из каждой транзакции
+        const sanitizedTransactions = validTransactions.map(({ asset, ...rest }) => rest);
+
         res.json({
             message: 'Unspent transactions retrieved successfully',
-            transactions: validTransactions
+            transactions: sanitizedTransactions
         });
     } catch (error) {
         console.error('Error in getting unspent transactions:', error);
@@ -98,5 +101,40 @@ async function getUploadedFiles(req, res) {
     }
 };
 
-module.exports = { uploadFile, getUploadedFiles};
 
+async function getTransactionDetails(req, res) {
+    const transactionId = req.query.transactionid; // Изменено на маленькие буквы
+    const conn = new Connection(API_PATH);
+    if (!transactionId) {
+        return res.status(400).json({ error: 'Transaction ID parameter is required' });
+    }
+
+    try {
+        // Получаем детали запрошенной транзакции
+        const transaction = await conn.getTransaction(transactionId).catch(err => {
+            console.error(`Failed to fetch transaction details for ID: ${transactionId}`, err);
+            res.status(404).json({ error: `Transaction with ID ${transactionId} not found` });
+            return null; // Возвращаем null и прекращаем выполнение функции
+        });
+
+        if (transaction) {
+            // Проверяем наличие файла и его содержимого
+            if (transaction.asset && transaction.asset.data && transaction.asset.data.fileContent) {
+                // Декодируем содержимое файла из base64
+                const fileContent = Buffer.from(transaction.asset.data.fileContent, 'base64');
+                // Устанавливаем заголовки для скачивания файла
+                res.setHeader('Content-Disposition', `attachment; filename="${transaction.asset.data.filename}"`);
+                res.setHeader('Content-Type', 'application/octet-stream');
+                // Отправляем файл
+                res.send(fileContent);
+            } else {
+                // Если в транзакции нет файла или его содержимого, отправляем соответствующую ошибку
+                res.status(404).json({ error: 'No file found in the transaction' });
+            }
+        }
+    } catch (error) {
+        console.error('Error in getting transaction details:', error);
+        res.status(500).json({ error: 'Failed to fetch transaction details' });
+    }
+};
+module.exports = { uploadFile, getUploadedFiles, getTransactionDetails };

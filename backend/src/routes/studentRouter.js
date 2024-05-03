@@ -4,10 +4,12 @@ const upload = multer({ storage: multer.memoryStorage() });  // Конфигур
 
 const router = express.Router();
 const { createNewStudent, getStudentDetails, updateStudent, deleteStudent, genKeyPairController } = require("../controllers/studentController");
-const { uploadFile, getUploadedFiles } = require("../controllers/bigcheinController");
+const { uploadFile, getUploadedFiles, getTransactionDetails } = require("../controllers/bigcheinController");
 
 
 router.get('/files', getUploadedFiles);
+router.get('/transaction', getTransactionDetails);
+
 // Обновляем маршрут для использования multer и передачи данных в функцию контроллера
 router.post('/upload_file', upload.single('file'), async (req, res) => {
     try {
