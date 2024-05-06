@@ -1,6 +1,6 @@
 const { Ed25519Keypair, Transaction, Connection } = require('bigchaindb-driver');
 const base58 = require('bs58');
-const API_PATH = 'http://95.164.32.14:9984//api/v1/';
+const API_PATH = 'http://188.124.37.32:9984//api/v1/';
 
 function generateKeyPairFromPrivateKey(privateKey) {
     if (typeof privateKey !== 'string') {
