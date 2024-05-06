@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const url = "http://95.164.32.14:8080/app/api/students";
+const url = "http://188.124.37.32:8080/app/api/students";
 
 export function PostCall(output) {
     return axios.post(url, output);
